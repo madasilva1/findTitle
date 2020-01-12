@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+   public static  String [] ArrayMovies ;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Guess a movie title!");
-
-        while (true) {
             DrowMuvieList();
-            GetInput("",0);
-        }
+
     }
     private static void GetInput(String movieName,int lenght) {
-        String [] ArrayMovies = new String[lenght];
+        ArrayMovies = new String[lenght];
+         coutCaracters(movieName);
+
 
         for (int i = 0; i < lenght; i++) {
             ArrayMovies[i] = "_";
@@ -88,4 +88,45 @@ public class Main {
         }
 
     }
-}
+    public static void coutCaracters(String str){
+        char[] strArr;
+        int indexOfDuplicate = 0;
+        do{
+            strArr = str.toCharArray();
+            char ch = strArr[0];
+
+            int count = 1;
+            for(int i = 1; i < strArr.length; i++){
+                if(ch == strArr[i]){
+                    indexOfDuplicate = i;
+                    String c = Character.toString(ch);
+                    ArrayMovies[indexOfDuplicate]= c;
+                    System.out.println(Arrays.toString(ArrayMovies));
+                    //System.out.println("the strind c is:"+c);
+
+                    count++;
+                }
+
+            }
+
+            // We don't need to count spaces
+            if(((ch != ' ') && (ch != '\t') && (count > 1))){
+                System.out.println(ch + " - " + count+" - ");
+            }
+
+
+            // replace all occurrence of the character
+            // which is already iterated and counted
+            str = str.replace(""+ch, "");
+
+        }while(strArr.length > 1);
+    }
+    //String test= "edcba";
+    //char[] ar = test.toCharArray();
+    //Arrays.sort(ar);
+    //String sorted = String.valueOf(ar);
+
+    }
+
+
+
