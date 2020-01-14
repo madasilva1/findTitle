@@ -9,16 +9,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Guess a movie title!");
             DrowMuvieList();
-
     }
     private static void GetInput(String movieName,int lenght) {
         ArrayMovies = new String[lenght];
-         coutCaracters(movieName);
-
+         //coutCaracters(movieName);
 
         for (int i = 0; i < lenght; i++) {
             ArrayMovies[i] = "_";
-
         }
         System.out.println("This is title's size :"+ " "+lenght);
         System.out.println(Arrays.toString(ArrayMovies));
@@ -44,27 +41,35 @@ public class Main {
 
             index = movieName.indexOf(letter);
             System.out.println("movie is:" + movieName + ", " + "letter position is:" + " " + index + " , " + "movie's lenght is:" + lenght);
-            ArrayMovies[index] = letter;
+            char[] strArr;
+            //strArr = new char[lenght];
+            char c = letter.charAt(0);
+            for(int j = 0; j < lenght; j++ ){
+                strArr = movieName.toCharArray();
+                if(strArr[j] == c){
+                    ArrayMovies[index] = letter;
+                    ArrayMovies[j] = letter;
+                }
+                else {
+                    ArrayMovies[index] = letter;
+                }
+            }
+            //ArrayMovies[index] = letter;
             System.out.println(Arrays.toString(ArrayMovies));
 
             System.out.println("you have " + trayLeft+ " " + "chances left");
             System.out.println("enter a letter");
             scanner = new Scanner(System.in);
             letter = scanner.nextLine();
-
-
         }
         else {
-
             System.out.println("wrong letter,tray again");
             System.out.println("you have "+ trayLeft+ "  " + "chances left");
             scanner = new Scanner(System.in);
              letter = scanner.nextLine();
         }
-
         }
     }
-
     private static void DrowMuvieList() throws Exception {
 
         int lengthOfMuvieTitle = 0;
@@ -86,45 +91,8 @@ public class Main {
             }
             TitleCount++;
         }
-
     }
-    public static void coutCaracters(String str){
-        char[] strArr;
-        int indexOfDuplicate = 0;
-        do{
-            strArr = str.toCharArray();
-            char ch = strArr[0];
 
-            int count = 1;
-            for(int i = 1; i < strArr.length; i++){
-                if(ch == strArr[i]){
-                    indexOfDuplicate = i;
-                    String c = Character.toString(ch);
-                    ArrayMovies[indexOfDuplicate]= c;
-                    System.out.println(Arrays.toString(ArrayMovies));
-                    //System.out.println("the strind c is:"+c);
-
-                    count++;
-                }
-
-            }
-
-            // We don't need to count spaces
-            if(((ch != ' ') && (ch != '\t') && (count > 1))){
-                System.out.println(ch + " - " + count+" - ");
-            }
-
-
-            // replace all occurrence of the character
-            // which is already iterated and counted
-            str = str.replace(""+ch, "");
-
-        }while(strArr.length > 1);
-    }
-    //String test= "edcba";
-    //char[] ar = test.toCharArray();
-    //Arrays.sort(ar);
-    //String sorted = String.valueOf(ar);
 
     }
 
