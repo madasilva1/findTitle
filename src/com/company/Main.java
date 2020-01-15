@@ -12,7 +12,7 @@ public class Main {
     }
     private static void GetInput(String movieName,int lenght) {
         ArrayMovies = new String[lenght];
-         //coutCaracters(movieName);
+
 
         for (int i = 0; i < lenght; i++) {
             ArrayMovies[i] = "_";
@@ -28,21 +28,21 @@ public class Main {
         String letter = scanner.nextLine();
 
         System.out.println(letter);
-
+          int trayLeft = lenght;
          for (int i = 0; i < lenght ; i++){
              while(!letter.matches("[a-zA-Z]+")){
-                 System.out.println("Please enter a valid letter!");
+                 trayLeft--;
+                 System.out.println("Please enter a valid letter!" + "You have:" +" "+trayLeft+ " "+"chances left");
                  scanner = new Scanner(System.in);
                  letter = scanner.nextLine();
-             }
 
-           int trayLeft = lenght - i;
+             }
         if (movieName.contains(letter)) {
 
             index = movieName.indexOf(letter);
+            trayLeft--;
             System.out.println("movie is:" + movieName + ", " + "letter position is:" + " " + index + " , " + "movie's lenght is:" + lenght);
             char[] strArr;
-            //strArr = new char[lenght];
             char c = letter.charAt(0);
             for(int j = 0; j < lenght; j++ ){
                 strArr = movieName.toCharArray();
@@ -53,8 +53,9 @@ public class Main {
                 else {
                     ArrayMovies[index] = letter;
                 }
+
             }
-            //ArrayMovies[index] = letter;
+
             System.out.println(Arrays.toString(ArrayMovies));
 
             System.out.println("you have " + trayLeft+ " " + "chances left");
@@ -63,12 +64,14 @@ public class Main {
             letter = scanner.nextLine();
         }
         else {
+            trayLeft--;
             System.out.println("wrong letter,tray again");
             System.out.println("you have "+ trayLeft+ "  " + "chances left");
             scanner = new Scanner(System.in);
              letter = scanner.nextLine();
         }
         }
+         // check aqui o fim do for loop
     }
     private static void DrowMuvieList() throws Exception {
 
