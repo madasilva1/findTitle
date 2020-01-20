@@ -57,7 +57,7 @@ public class Main {
                 index = movieName.indexOf(letter);
 
                 System.out.println("letter position is:" + " " + index + " , " + "movie's lenght is:" + lenght);
-                char[] strArr;
+                char[] strArr = new char[lenght];
                 char c = letter.charAt(0);
                 for (int j = 0; j < lenght; j++) {
                     strArr = movieName.toCharArray();
