@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class Main {
    public static  String [] ArrayMovies ;
    public static int numberOfEmptySpace = 0;
+  public static String movieName;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Guess a movie title!");
             DrowMuvieList();
-            System.out.println("you lost");
+
     }
     private static void GetInput(String movieName,int lenght) {
 
@@ -26,9 +27,7 @@ public class Main {
             ArrayMovies[i] = "_";
         }
         int titleEptySpace = numberOfEmptySpace -1;
-        System.out.println("movie title is:" + " " + movieName);
-        System.out.println("This is title's size :" + " " + lenght);
-        System.out.println("Empty space in title's name"+ " "+titleEptySpace);
+        System.out.println("This is title's size :" + " " + lenght+ " "+ "Title's name:"+ ""+movieName);
         System.out.println(Arrays.toString(ArrayMovies));
 
         int index = 0;
@@ -42,21 +41,22 @@ public class Main {
             String letter = scanner.nextLine();
              trayLeft--;
             System.out.println(letter);
-            while (!letter.matches("[a-zA-Z]+")) {
-                System.out.println("Please enter a valid letter!" + "You have:" + " " + trayLeft + " " + "chances left");
+            while (!letter.matches("[a-zA-Z]+")|| !movieName.contains(letter) ) {
+                System.out.println("you have entered a wrong or not valid letter!" + "You have:" + " " + trayLeft + " " + "chances left");
                 scanner = new Scanner(System.in);
                 letter = scanner.nextLine();
-                if(trayLeft == 0){
-                    System.out.println("you lost !!!!");
+                trayLeft--;
+                if(trayLeft == 0 ){
+                    System.out.println("you lost !!!!"+"Movie's name is:" + " "+ movieName);
+                    System.out.println("You got : "+ " "+ Arrays.toString(ArrayMovies));
                     System.exit(0);
                 }
             }
-
             if (movieName.contains(letter)) {
 
                 index = movieName.indexOf(letter);
 
-                System.out.println("movie is:" + movieName + ", " + "letter position is:" + " " + index + " , " + "movie's lenght is:" + lenght);
+                System.out.println("letter position is:" + " " + index + " , " + "movie's lenght is:" + lenght);
                 char[] strArr;
                 char c = letter.charAt(0);
                 for (int j = 0; j < lenght; j++) {
@@ -72,17 +72,6 @@ public class Main {
                 System.out.println(Arrays.toString(ArrayMovies));
 
                 System.out.println("you have " + trayLeft + " " + "chances left");
-               // System.out.println("enter a letter");
-               // scanner = new Scanner(System.in);
-                //letter = scanner.nextLine();
-                //letter = validation(letter,trayLeft);
-
-
-            } else {
-
-                System.out.println("you entered:"+ " "+letter);
-                System.out.println("wrong letter,tray again");
-                System.out.println("you have " + trayLeft + "  " + "chances left");
             }
             int empty = 0;
             int lastIndex = 0;
@@ -91,14 +80,17 @@ public class Main {
                     empty++;
                 }
             }
-
-            System.out.println("empty"+ " "+ empty  + Arrays.toString(ArrayMovies));
                 if ( empty + 1  == numberOfEmptySpace){
                     lastIndex = movieName.indexOf(letter);
                     ArrayMovies[lastIndex] = letter;
                     System.out.println( Arrays.toString(ArrayMovies));
-                    System.out.println("you won!");
+                    System.out.println("you won!"+ " "+"Movie's name is:"+ Arrays.toString(ArrayMovies));
 
+                    System.exit(0);
+                }
+                if(trayLeft == 0 && empty + 1  != numberOfEmptySpace){
+                    System.out.println("you lost???" + "You got:"+" "+ Arrays.toString(ArrayMovies));
+                    System.out.println("Movie's name is:" + " "+movieName);
                     System.exit(0);
                 }
         }
@@ -123,7 +115,6 @@ public class Main {
                 lengthOfMuvieTitle = movieName.length();
                 GetInput(movieName,lengthOfMuvieTitle);
             }
-
             TitleCount++;
         }
     }
