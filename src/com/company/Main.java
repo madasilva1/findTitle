@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Guess a movie title!");
             DrowMuvieList();
-
     }
     private static void GetInput(String movieName,int lenght) {
 
@@ -36,14 +35,23 @@ public class Main {
 
         for (int i = 0; i < lenght; i++) {
 
-            System.out.println("You are guessing, enter a leter");
-            Scanner scanner = new Scanner(System.in);
-            String letter = scanner.nextLine();
-
+              try {
+                  System.out.println("You are guessing, enter a leter");
+                Scanner scanner = new Scanner(System.in);
+                 String letter = scanner.nextLine();
+                 //int onlyOne = 0;
+                // while (letter.length()>1){
+                    // System.out.println("just one character, tray again");
+                    // letter = scanner.nextLine();
+                     //trayLeft--;
+                // }
+                 // char ch = letter.charAt(onlyOne);
+                 //  letter =Character.toString(ch);
+                  System.out.println("you have " + trayLeft + " " + "chances left");
              trayLeft--;
             System.out.println(letter);
-            while (!letter.matches("[a-zA-Z]+")|| !movieName.contains(letter)  ) {
-                System.out.println("you have entered a wrong or not valid letter!" + "You have:" + " " + trayLeft + " " + "chances left");
+            while (!letter.matches("[a-zA-Z]+")|| !movieName.contains(letter) ||letter.length()>1 ) {
+                System.out.println("you have entered a wrong or ilegal caracter!" + "You have:" + " " + trayLeft + " " + "chances left");
                 scanner = new Scanner(System.in);
                 letter = scanner.nextLine();
                 trayLeft--;
@@ -53,7 +61,6 @@ public class Main {
                     System.exit(0);
                 }
             }
-
             if (movieName.contains(letter)) {
 
                 index = movieName.indexOf(letter);
@@ -64,20 +71,15 @@ public class Main {
                 for (int j = 0; j < lenght; j++) {
                     strArr = movieName.toCharArray();
                     if (strArr[j] == c) {
-                       strArr[j] = c;
-                       strArr[index] = c;
-                        //ArrayMovies[index] = letter;
-                        //ArrayMovies[j] = letter;
+                        ArrayMovies[index] = letter;
+                        ArrayMovies[j] = letter;
 
                     } else {
-                        strArr[index] = c;
-                        //ArrayMovies[index] = letter;
+                        ArrayMovies[index] = letter;
                     }
                 }
-                 //letter = String.copyValueOf(strArr, index, 1);
-               // System.out.println("letter"+ " "+letter);
-                //System.out.println(Arrays.toString(ArrayMovies));
-                 System.out.println(String.copyValueOf(strArr));
+                System.out.println(Arrays.toString(ArrayMovies));
+                // System.out.println(String.copyValueOf(strArr));
                 System.out.println("you have " + trayLeft + " " + "chances left");
             }
             int empty = 0;
@@ -96,10 +98,15 @@ public class Main {
                     System.exit(0);
                 }
                 if(trayLeft == 0 && empty + 1  != numberOfEmptySpace){
+                    ArrayMovies[lastIndex] = letter;
                     System.out.println("you lost???" + "You got:"+" "+ Arrays.toString(ArrayMovies));
                     System.out.println("Movie's name is:" + " "+movieName);
                     System.exit(0);
                 }
+                //aqui end of if
+              }catch (Exception e){
+
+              }
         }
     }
     private static void DrowMuvieList() throws Exception {
