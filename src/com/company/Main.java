@@ -39,9 +39,10 @@ public class Main {
             System.out.println("You are guessing, enter a leter");
             Scanner scanner = new Scanner(System.in);
             String letter = scanner.nextLine();
+
              trayLeft--;
             System.out.println(letter);
-            while (!letter.matches("[a-zA-Z]+")|| !movieName.contains(letter) ) {
+            while (!letter.matches("[a-zA-Z]+")|| !movieName.contains(letter)  ) {
                 System.out.println("you have entered a wrong or not valid letter!" + "You have:" + " " + trayLeft + " " + "chances left");
                 scanner = new Scanner(System.in);
                 letter = scanner.nextLine();
@@ -52,6 +53,7 @@ public class Main {
                     System.exit(0);
                 }
             }
+
             if (movieName.contains(letter)) {
 
                 index = movieName.indexOf(letter);
@@ -62,15 +64,20 @@ public class Main {
                 for (int j = 0; j < lenght; j++) {
                     strArr = movieName.toCharArray();
                     if (strArr[j] == c) {
-                        ArrayMovies[index] = letter;
-                        ArrayMovies[j] = letter;
+                       strArr[j] = c;
+                       strArr[index] = c;
+                        //ArrayMovies[index] = letter;
+                        //ArrayMovies[j] = letter;
 
                     } else {
-                        ArrayMovies[index] = letter;
+                        strArr[index] = c;
+                        //ArrayMovies[index] = letter;
                     }
                 }
-                System.out.println(Arrays.toString(ArrayMovies));
-
+                 //letter = String.copyValueOf(strArr, index, 1);
+               // System.out.println("letter"+ " "+letter);
+                //System.out.println(Arrays.toString(ArrayMovies));
+                 System.out.println(String.copyValueOf(strArr));
                 System.out.println("you have " + trayLeft + " " + "chances left");
             }
             int empty = 0;
