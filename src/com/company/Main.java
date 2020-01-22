@@ -35,18 +35,10 @@ public class Main {
 
         for (int i = 0; i < lenght; i++) {
 
-              try {
                   System.out.println("You are guessing, enter a leter");
                 Scanner scanner = new Scanner(System.in);
                  String letter = scanner.nextLine();
-                 //int onlyOne = 0;
-                // while (letter.length()>1){
-                    // System.out.println("just one character, tray again");
-                    // letter = scanner.nextLine();
-                     //trayLeft--;
-                // }
-                 // char ch = letter.charAt(onlyOne);
-                 //  letter =Character.toString(ch);
+
                   System.out.println("you have " + trayLeft + " " + "chances left");
              trayLeft--;
             System.out.println(letter);
@@ -103,12 +95,8 @@ public class Main {
                     System.out.println("Movie's name is:" + " "+movieName);
                     System.exit(0);
                 }
-                //aqui end of if
-              }catch (Exception e){
-
               }
         }
-    }
     private static void DrowMuvieList() throws Exception {
 
         int lengthOfMuvieTitle = 0;
